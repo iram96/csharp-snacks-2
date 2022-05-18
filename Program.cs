@@ -176,12 +176,26 @@ List<Tuple<string, int>> lista = new List<Tuple<string, int>>() {
 
 
 lista.Sort();
-var newLista = lista.Select(s => s.Item1);
+var newLista = lista.Select(s => s.Item1 + "" + s.Item2);
+
+lista.ForEach(x => Console.WriteLine(x));
+Console.WriteLine(string.Join("\t", lista));
+
 
 foreach (string s in newLista)
     Console.WriteLine(s);
 
+//Ordinare per il secondo campo della tupla
 
+lista.Sort((t1, t2) => t1.Item2.CompareTo(t2.Item1));
+Console.WriteLine(string.Join("\t", lista));
+
+lista.Sort();
+lista.Sort((t1, t2) => t1.Item2 - t2.Item2);
+Console.WriteLine(string.Join("\t", lista));
+
+double microseconds = DateTime.Now.Ticks / (TimeSpan.TicksPerMillisecond / 1000.0);
+Console.WriteLine("microseconds: {0}", microseconds);
 
 
 
